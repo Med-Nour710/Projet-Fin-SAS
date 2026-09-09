@@ -180,9 +180,9 @@ const trips = [
         availableSeats: 50
     }
 ];
-//const tickets = [];
 
 var prompt = require('prompt-sync')();
+
 
 function Afficher_trj() {
     console.log(`=== TRAJETS DISPONIBLES === `)
@@ -196,7 +196,50 @@ function Afficher_trj() {
                                 }
                         }
 
+
+const tickets = [];
+let next_Ticket_Id=1;
 function Achetter_tik() {
+    let Passanger_Name = prompt("Saisir Le Nom du Passager : ");
+    let Trajet_Id = Number(prompt("Saisir Le Identifiant du trajet : "));   
+    
+    let Trajet_Trouver =null;
+        for(let i = 0;i<trips.length;i++){
+            if(trips[i].id === Trajet_Id){
+                Trajet_Trouver = trips[i];
+                break;
+            }    
+                                        }
+            if(Trajet_Trouver == null){
+                console.log("Trajet Introuvable.");
+                return;
+            }
+            if(Trajet_Trouver.availableSeats <=0){
+                console.log("Train Complet")
+                return;
+            }
+        
+        const Num_of_Seat = 51 - Trajet_Trouver.availableSeats;
+        
+        const ticket = {
+            id: next_Ticket_Id,
+            passengerName: Passanger_Name,
+            TripId :Trajet_Trouver.id,
+            seatNumber : Num_of_Seat,
+            price: Trajet_Trouver.price
+        };
+        tickets.push(ticket);
+
+        Trajet_Trouver.availableSeats--;
+        next_Ticket_Id++;
+
+    console.log("Ticket acheté avec succès.");
+    console.log(`Ticket #${ticket.id}`,
+                `\nPassager: ${ticket.passengerName}`,
+                `\nTrajet: ${Trajet_Trouver.departure} → ${Trajet_Trouver.destination}`,
+                `\nPlace: ${ticket.seatNumber}`,
+                `\nPrix: ${ticket.price} DH`);
+    
     
 }
 
