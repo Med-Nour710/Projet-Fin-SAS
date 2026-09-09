@@ -219,7 +219,19 @@ function Achetter_tik() {
                 return;
             }
         
-        const Num_of_Seat = 51 - Trajet_Trouver.availableSeats;
+        let takenSeats = [];
+        for (let j = 0; j < tickets.length; j++) {
+            if (tickets[j].TripId === Trajet_Trouver.id) {
+                takenSeats.push(tickets[j].seatNumber);
+            }
+        }
+        let Num_of_Seat = 0;
+        for (let seat = 1; seat <= 50; seat++) {
+            if (!takenSeats.includes(seat)) {
+                Num_of_Seat = seat;
+                break;
+            }
+        }
         
         const ticket = {
             id: next_Ticket_Id,
@@ -241,23 +253,64 @@ function Achetter_tik() {
                 `\nPrix: ${ticket.price} DH`);
     
     
-}
+                        }
+
 
 function Afficher_les_tik() {
-    
+    if(tickets.length <=0){
+        console.log("Aucun ticket enregistré")
+        return;
+    }
+        console.log("=== TICKETS ===")
+    for(let i =0;i<tickets.length;i++)
+    {
+        console.log(`Ticket #${tickets[i].id}`,
+                    `\nPassager : ${tickets[i].passengerName}`,
+                    `\nTrajet : ${trips[tickets[i].TripId - 1].departure} → ${trips[tickets[i].TripId - 1].destination} `,
+                    `\nPlace : ${tickets[i].seatNumber}`,
+                    `\nPrix : ${tickets[i].price} DH`)
+    }
+                            }
+
+ 
+function Annuler_tik() {
+    let ticket_a_supprimer = Number(prompt("Identifiant du ticket : "));
+
+    let ticket_index = -1;
+    for(let i=0;i<tickets.length;i++)
+        if(tickets[i].id === ticket_a_supprimer){
+            ticket_index = i;
+            break;
+        }
+        if(ticket_index === -1)
+        {
+            console.log("Ticket Introuvable.")
+            return;
+        }
+        let trajet_a_sup_id = tickets[ticket_index].TripId;
+
+    for(let j = 0; j < trips.length; j++) {
+        if(trips[j].id === trajet_a_sup_id) {
+            trips[j].availableSeats++; 
+            break;
+        }
+    }
+
+    tickets.splice(ticket_index, 1);
+
+    console.log("Ticket annulé avec succès.");   
 }
 
-function Annuler_tik() {
-    
-}
 
 function Rechercher_tik() {
     
 }
 
+
 function Filtrer_les_trj() {
     
 }
+
 
 function Trier_les_trj() {
     
