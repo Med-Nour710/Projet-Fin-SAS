@@ -314,7 +314,7 @@ function Rechercher_tik() {
                 `\nPlace: ${tickets[i].seatNumber}`,
                 `\nPrix: ${tickets[i].price} DH`);
             ticket_trouver = true;
-            return;
+            
         }
         if(ticket_trouver===false)
         {
