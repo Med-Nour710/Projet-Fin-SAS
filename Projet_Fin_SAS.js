@@ -303,7 +303,23 @@ function Annuler_tik() {
 
 
 function Rechercher_tik() {
-    
+    let passager_a_chercher = prompt("Nom du Passager : ")
+    let ticket_trouver = false;
+    for(let i=0;i<tickets.length;i++)
+        if(tickets[i].passengerName === passager_a_chercher)
+        {
+            console.log(`Ticket #${tickets[i].id}`,
+                `\nPassager: ${tickets[i].passengerName}`,
+                `\nTrajet: ${trips[tickets[i].TripId -1].departure} → ${trips[tickets[i].TripId -1].destination}`,
+                `\nPlace: ${tickets[i].seatNumber}`,
+                `\nPrix: ${tickets[i].price} DH`);
+            ticket_trouver = true;
+            return;
+        }
+        if(ticket_trouver===false)
+        {
+            console.log("Ce Passager n\'a pas de Ticket")
+        }
 }
 
 
