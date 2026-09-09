@@ -180,12 +180,21 @@ const trips = [
         availableSeats: 50
     }
 ];
+//const tickets = [];
 
 var prompt = require('prompt-sync')();
 
 function Afficher_trj() {
-    
-}
+    console.log(`=== TRAJETS DISPONIBLES === `)
+    for(let i=0;i<trips.length;i++){
+        console.log(`\n#${trips[i].id}  ${trips[i].departure} → ${trips[i].destination}`
+        ,`\n Départ : ${trips[i].departureTime}`
+        ,`\nArrivée : ${trips[i].arrivalTime}`
+        ,`\nPrix : ${trips[i].price} DH`
+        ,`\nPlaces disponibles : ${trips[i].availableSeats}`
+                    )
+                                }
+                        }
 
 function Achetter_tik() {
     
