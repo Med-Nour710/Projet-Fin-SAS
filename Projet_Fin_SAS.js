@@ -339,10 +339,21 @@ function Filtrer_les_trj() {
                             }
                             
 
-
 function Trier_les_trj() {
-    
-    
+
+    for (let i = 0; i < trips.length - 1; i++) {
+        for (let j = 0; j < trips.length - 1 - i; j++) {
+            if (trips[j].price > trips[j+1].price) 
+                {
+                let swap = trips[j];
+                trips[j] = trips[j+1];
+                trips[j+1] = swap;
+                }
+                                                        }
+                                                }
+    for (let k = 0; k < trips.length; k++) {
+        console.log(`${trips[k].departure} → ${trips[k].destination} : ${trips[k].price} DH`)
+                                            }
                             }
 
 
