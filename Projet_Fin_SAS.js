@@ -299,7 +299,7 @@ function Annuler_tik() {
     tickets.splice(ticket_index, 1);
 
     console.log("Ticket annulé avec succès.");   
-}
+                        }
 
 
 function Rechercher_tik() {
@@ -320,17 +320,30 @@ function Rechercher_tik() {
         {
             console.log("Ce Passager n\'a pas de Ticket")
         }
-}
+                            }
 
 
 function Filtrer_les_trj() {
-    
-}
+    let ville_de_depart = prompt("Ville de Depart : ")
+
+    let Trajet_Trouver = false;
+    for(let i=0;i<trips.length;i++){        
+        if(trips[i].departure.trim() === ville_de_depart.trim()){
+        console.log(`${trips[i].departure} → ${trips[i].destination} : ${trips[i].price} DH`);
+        Trajet_Trouver = true;}
+        } 
+        if(Trajet_Trouver == false){
+            console.log(`Cette ville n'est pas une ville de départ`);
+            Trajet_Trouver = false;
+                                    }
+                            }
+                            
 
 
 function Trier_les_trj() {
     
-}
+    
+                            }
 
 
 function main() {
