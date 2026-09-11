@@ -188,7 +188,7 @@ function Afficher_trj() {
     console.log(`=== TRAJETS DISPONIBLES === `)
     for(let i=0;i<trips.length;i++){
         console.log(`\n#${trips[i].id}  ${trips[i].departure} → ${trips[i].destination}`
-        ,`\n Départ : ${trips[i].departureTime}`
+        ,`\nDépart : ${trips[i].departureTime}`
         ,`\nArrivée : ${trips[i].arrivalTime}`
         ,`\nPrix : ${trips[i].price} DH`
         ,`\nPlaces disponibles : ${trips[i].availableSeats}`
@@ -200,7 +200,7 @@ function Afficher_trj() {
 const tickets = [];
 let next_Ticket_Id=1;
 function Achetter_tik() {
-    let Passanger_Name = prompt("Saisir Le Nom du Passager : ");
+    let Passanger_Name = prompt("Saisir Le Nom du Passager : ").trim();
     let Trajet_Id = Number(prompt("Saisir Le Identifiant du trajet : "));   
     
     let Trajet_Trouver =null;
@@ -244,13 +244,16 @@ function Achetter_tik() {
 
         Trajet_Trouver.availableSeats--;
         next_Ticket_Id++;
-
+    
+    console.log("");
     console.log("Ticket acheté avec succès.");
+    console.log("");
     console.log(`Ticket #${ticket.id}`,
                 `\nPassager: ${ticket.passengerName}`,
                 `\nTrajet: ${Trajet_Trouver.departure} → ${Trajet_Trouver.destination}`,
                 `\nPlace: ${ticket.seatNumber}`,
                 `\nPrix: ${ticket.price} DH`);
+    console.log("");
     
     
                         }
@@ -263,12 +266,14 @@ function Afficher_les_tik() {
     }
         console.log("=== TICKETS ===")
     for(let i =0;i<tickets.length;i++)
-    {
+    {   
+        console.log("");
         console.log(`Ticket #${tickets[i].id}`,
                     `\nPassager : ${tickets[i].passengerName}`,
                     `\nTrajet : ${trips[tickets[i].TripId - 1].departure} → ${trips[tickets[i].TripId - 1].destination} `,
                     `\nPlace : ${tickets[i].seatNumber}`,
-                    `\nPrix : ${tickets[i].price} DH`)
+                    `\nPrix : ${tickets[i].price} DH`);
+        console.log("");
     }
                             }
 
@@ -303,7 +308,7 @@ function Annuler_tik() {
 
 
 function Rechercher_tik() {
-    let passager_a_chercher = prompt("Nom du Passager : ")
+    let passager_a_chercher = prompt("Nom du Passager : ").trim();
     let ticket_trouver = false;
     for(let i=0;i<tickets.length;i++)
         if(tickets[i].passengerName === passager_a_chercher)
@@ -317,7 +322,7 @@ function Rechercher_tik() {
             
         }
         if(ticket_trouver===false)
-        {
+        {   console.log("")
             console.log("Ce Passager n\'a pas de Ticket")
         }
                             }
@@ -328,7 +333,7 @@ function Filtrer_les_trj() {
 
     let Trajet_Trouver = false;
     for(let i=0;i<trips.length;i++){        
-        if(trips[i].departure.trim() === ville_de_depart.trim()){
+        if(trips[i].departure.trim().toLowerCase() === ville_de_depart.trim().toLowerCase()){
         console.log(`${trips[i].departure} → ${trips[i].destination} : ${trips[i].price} DH`);
         Trajet_Trouver = true;}
         } 
@@ -360,6 +365,7 @@ function Trier_les_trj() {
 function main() {
     let n;
     do {
+        console.log("");
         console.log("================================")
         console.log("           RAILWAY MANAGER      ")
         console.log("================================") 
@@ -375,8 +381,10 @@ function main() {
         
         
         let Input = prompt("Votre choix :");
+        if(Input==="")
+        {console.log("Votre Choix n'etait pas Valide, Svp donne moi une valeur entre 0 et 7"); continue;}
         n=Number(Input);
- 
+        
     switch (n) {
             case 1:
                 Afficher_trj()
@@ -396,23 +404,14 @@ function main() {
             case 6: 
                 Filtrer_les_trj()
                 break;
-             case 7: 
+            case 7: 
                 Trier_les_trj()
                 break;
-        
+
             default:
-                console.log(/*"Votre Choix n'etait pas Valide, Svp donne moi une valeur entre 0 et 7"*/)
                   break;
         }
     } while (n!=0)
 }
 
 main()
-
-
-
-
-
-
-
- 
