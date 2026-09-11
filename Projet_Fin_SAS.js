@@ -346,21 +346,28 @@ function Filtrer_les_trj() {
 
 function Trier_les_trj() {
 
-    for (let i = 0; i < trips.length - 1; i++) {
-        for (let j = 0; j < trips.length - 1 - i; j++) {
-            if (trips[j].price > trips[j+1].price) 
-                {
-                let swap = trips[j];
-                trips[j] = trips[j+1];
-                trips[j+1] = swap;
-                }
+        let sortedtrips = [];
+    for (let i =0;i < trips.length;i++) 
+        {sortedtrips.push(trips[i]);}
+
+    for (let j = 0;j < sortedtrips.length;j++) {
+        for (let k = 0;k < sortedtrips.length - 1;k++) {
+            if (sortedtrips[k].price > sortedtrips[k + 1].price) {
+                                let swap = 0;
+                                    swap = sortedtrips[k];
+                                    sortedtrips[k] = sortedtrips[k + 1];
+                                    sortedtrips[k + 1] = swap;
+                                                                }
                                                         }
                                                 }
-    for (let k = 0; k < trips.length; k++) {
-        console.log(`${trips[k].departure} → ${trips[k].destination} : ${trips[k].price} DH`)
-                                            }
-                            }
-
+    for (let c = 0;c < sortedtrips.length;c++) 
+    {
+    console.log(`${sortedtrips[c].departure} → ${sortedtrips[c].destination} : ${sortedtrips[c].price} DH`);
+    }
+        
+            
+                        }
+                        
 
 function main() {
     let n;
