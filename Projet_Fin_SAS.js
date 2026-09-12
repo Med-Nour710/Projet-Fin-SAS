@@ -367,7 +367,7 @@ function Trier_les_trj() {
         
             
                         }
-                        
+
 
 function main() {
     let n;
@@ -387,7 +387,7 @@ function main() {
         console.log("");
         
         
-        let Input = prompt("Votre choix :");
+        let Input = prompt("Votre choix :").trim();
         if(Input==="")
         {console.log("Votre Choix n'etait pas Valide, Svp donne moi une valeur entre 0 et 7"); continue;}
         n=Number(Input);
@@ -414,9 +414,12 @@ function main() {
             case 7: 
                 Trier_les_trj()
                 break;
-
+            case 0:
+                console.log("Au Revoir.")
+                break;
             default:
-                  break;
+                console.log("Votre Choix n'etait pas Valide, Svp donne moi une valeur entre 0 et 7");
+                break;
         }
     } while (n!=0)
 }
