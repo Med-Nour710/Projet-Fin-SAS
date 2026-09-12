@@ -313,7 +313,7 @@ function Rechercher_tik() {
     for(let i=0;i<tickets.length;i++)
         if(tickets[i].passengerName === passager_a_chercher)
         {
-            console.log(`Ticket #${tickets[i].id}`,
+            console.log(`\nTicket #${tickets[i].id}`,
                 `\nPassager: ${tickets[i].passengerName}`,
                 `\nTrajet: ${trips[tickets[i].TripId -1].departure} → ${trips[tickets[i].TripId -1].destination}`,
                 `\nPlace: ${tickets[i].seatNumber}`,
@@ -346,23 +346,20 @@ function Filtrer_les_trj() {
 
 function Trier_les_trj() {
 
-        let sortedtrips = [];
-    for (let i =0;i < trips.length;i++) 
-        {sortedtrips.push(trips[i]);}
-
-    for (let j = 0;j < sortedtrips.length;j++) {
-        for (let k = 0;k < sortedtrips.length - 1;k++) {
-            if (sortedtrips[k].price > sortedtrips[k + 1].price) {
+    let sortedtrips = trips;
+    for (let i = 0;i < sortedtrips.length;i++) {
+        for (let j = 0;j < sortedtrips.length - 1;j++) {
+            if (sortedtrips[j].price > sortedtrips[j + 1].price) {
                                 let swap = 0;
-                                    swap = sortedtrips[k];
-                                    sortedtrips[k] = sortedtrips[k + 1];
-                                    sortedtrips[k + 1] = swap;
+                                    swap = sortedtrips[j];
+                                    sortedtrips[j] = sortedtrips[j + 1];
+                                    sortedtrips[j + 1] = swap;
                                                                 }
                                                         }
                                                 }
-    for (let c = 0;c < sortedtrips.length;c++) 
+    for (let k = 0;k < sortedtrips.length;k++) 
     {
-    console.log(`${sortedtrips[c].departure} → ${sortedtrips[c].destination} : ${sortedtrips[c].price} DH`);
+    console.log(`${sortedtrips[k].departure} → ${sortedtrips[k].destination} : ${sortedtrips[k].price} DH`);
     }
         
             
