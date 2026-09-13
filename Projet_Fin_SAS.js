@@ -218,21 +218,9 @@ function Achetter_tik() {
                 console.log("Train Complet")
                 return;
             }
-        
-        let takenSeats = [];
-        for (let j = 0; j < tickets.length; j++) {
-            if (tickets[j].TripId === Trajet_Trouver.id) {
-                takenSeats.push(tickets[j].seatNumber);
-            }
-        }
-        let Num_of_Seat = 0;
-        for (let seat = 1; seat <= 50; seat++) {
-            if (!takenSeats.includes(seat)) {
-                Num_of_Seat = seat;
-                break;
-            }
-        }
-        
+
+            const Num_of_Seat = 51 - Trajet_Trouver.availableSeats;
+
         const ticket = {
             id: next_Ticket_Id,
             passengerName: Passanger_Name,
